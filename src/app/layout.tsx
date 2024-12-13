@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Thai } from "next/font/google";
+import "@mantine/core/styles.css";
 import "./globals.css";
+import { MantineProvider } from "@mantine/core";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +12,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const noto = Noto_Sans_Thai({
+  variable: "--font-noto",
+  subsets: ["thai"],
 });
 
 export const metadata: Metadata = {
@@ -25,9 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${noto.className} ${noto.variable} antialiased`}
       >
-        {children}
+        {" "}
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );
